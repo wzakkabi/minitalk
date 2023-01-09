@@ -1,2 +1,0 @@
-NAME = minitalk.h
-
