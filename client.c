@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:21:12 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/01/09 03:45:35 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/01/10 01:40:36 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@
 
 char *converter(int c, int base)
 {
-	char *bs = "01";
+	char *bs;
+	if(base == 2)
+		bs = "01";
+	if(base == 10)
+		bs = "0123456789";
 	char *p;
 	int y = 0;
 	int x = 7;
@@ -31,12 +35,14 @@ char *converter(int c, int base)
 		x--;
 	}
 	p[8] = '\0';
+	
 	return p;
 }
 
 int main()
 {
-	char *p = converter(254, 2);
-	kill(35778,  SIGUSR2);
+	char *p = converter('0', 10);
+	printf("%s", p);
+	kill(8746,  SIGUSR1);
 	return 0;
 }
