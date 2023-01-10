@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:21:12 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/01/10 01:40:36 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:56:25 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <signal.h>
-#include "libft.h"
+#include "./libft/libft.h"
 
-char *converter(int c, int base)
+void converter(int c, int base)
 {
 	char *bs;
 	if(base == 2)
@@ -35,14 +35,29 @@ char *converter(int c, int base)
 		x--;
 	}
 	p[8] = '\0';
-	
-	return p;
+	x = 0;
+	while(x <= 8)
+	{
+		if(p[x] == '0')
+		{
+			kill(38306, SIGUSR1);
+			printf("0");
+		}
+		
+		if(p[x] == '1')
+		{
+			kill(38306, SIGUSR2);
+			printf("1");
+		}
+		usleep(1);
+		x++;
+	}
 }
 
 int main()
 {
-	char *p = converter('0', 10);
-	printf("%s", p);
-	kill(8746,  SIGUSR1);
+	converter('A', 2);
+	//printf("%s", p);
+
 	return 0;
 }
