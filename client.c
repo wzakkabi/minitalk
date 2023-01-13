@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:21:12 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/01/10 20:56:25 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/01/13 00:43:47 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@
 #include <signal.h>
 #include "./libft/libft.h"
 
-void converter(int c, int base)
+void msg(int a)
+{
+	write(1, "succes", 7);
+}
+
+void converter(int c, int base, int pid)
 {
 	char *bs;
-	if(base == 2)
 		bs = "01";
-	if(base == 10)
-		bs = "0123456789";
 	char *p;
 	int y = 0;
 	int x = 7;
 	p = malloc(9);
+	usleep(100);
 	while(x >= 0)
 	{
 		y = c / base;
@@ -40,24 +43,28 @@ void converter(int c, int base)
 	{
 		if(p[x] == '0')
 		{
-			kill(38306, SIGUSR1);
-			printf("0");
+			kill(pid, SIGUSR1);
 		}
 		
 		if(p[x] == '1')
 		{
-			kill(38306, SIGUSR2);
-			printf("1");
+			kill(pid, SIGUSR2);
 		}
-		usleep(1);
+		usleep(100);
 		x++;
 	}
 }
 
-int main()
+int main(int arv, char **arc)
 {
-	converter('A', 2);
-	//printf("%s", p);
-
+	int a = 0;
+	
+	if(arv >= 3)
+	{
+		signal(SIGUSR1 ,msg);
+		while(arc[2][a])
+			converter((unsigned char)arc[2][a++], 2, atoi(arc[1]));
+		//printf("%s", p);
+	}
 	return 0;
 }
