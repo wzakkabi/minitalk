@@ -6,19 +6,19 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:21:29 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/01/15 00:37:38 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:58:32 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void converter(char *p)
+void	converter(char *p)
 {
-	char *bs;
-	int x;
-	int y;
-	int crt;
-	
+	char	*bs;
+	int		x;
+	int		y;
+	int		crt;
+
 	crt = 0;
 	y = 1;
 	x = 7;
@@ -28,17 +28,16 @@ void converter(char *p)
 		if (p[x] == '1')
 			crt = crt + y;
 		y = y * 2;
-		x--;	
+		x--;
 	}
 	write (1, &crt, 1);
 }
 
-
-void walid(int a, siginfo_t *ff, void *nll)
+void	walid(int a, siginfo_t *ff, void *nll)
 {
-	static char p[10];
-	static int x;
-	static int pd;
+	static char	p[10];
+	static int	x;
+	static int	pd;
 
 	nll = 0;
 	if (pd != ff->si_pid)
@@ -63,16 +62,16 @@ void walid(int a, siginfo_t *ff, void *nll)
 	}
 }
 
-int main()
+int	main(void)
 {
-	struct sigaction ac;
-	
+	struct sigaction	ac;
+
 	ac.sa_sigaction = walid;
 	ft_putnbr(getpid());
-	while(1)
+	while (1)
 	{
-		sigaction(SIGUSR1 , &ac , NULL);
-		sigaction(SIGUSR2 , &ac , NULL);
+		sigaction(SIGUSR1, &ac, NULL);
+		sigaction(SIGUSR2, &ac, NULL);
 	}
-	return 0;
+	return (0);
 }

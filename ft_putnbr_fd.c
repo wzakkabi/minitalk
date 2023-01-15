@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:30:48 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/01/14 23:34:31 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:40:31 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_putnbr(int n)
 {
-	int numb;
+	int	numb;
+
 	if (n < 0)
 	{
 		write(1, "-", 1);
