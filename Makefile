@@ -13,7 +13,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
-	rm $(OBJ)
 	$(CC) $(FLAGS) client.c -o client minitalk.a
 	$(CC) $(FLAGS) server.c -o server minitalk.a 
 

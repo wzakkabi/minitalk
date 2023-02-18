@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:21:29 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/01/15 00:58:32 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/01/20 01:04:44 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	walid(int a, siginfo_t *ff, void *nll)
 	nll = 0;
 	if (pd != ff->si_pid)
 	{
-		kill(ff->si_pid, SIGUSR1);
 		pd = ff->si_pid;
 		x = 0;
 	}
@@ -70,8 +69,9 @@ int	main(void)
 	ft_putnbr(getpid());
 	while (1)
 	{
-		sigaction(SIGUSR1, &ac, NULL);
 		sigaction(SIGUSR2, &ac, NULL);
+		sigaction(SIGUSR1, &ac, NULL);
+		pause();
 	}
 	return (0);
 }

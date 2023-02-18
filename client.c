@@ -6,17 +6,11 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:21:12 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/01/15 00:53:56 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/01/20 01:05:03 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-void	msg(int a)
-{
-	a = 0;
-	write (1, "succes", 7);
-}
 
 void	send(char *p, int pid)
 {
@@ -46,6 +40,8 @@ void	converter(int c, int pid)
 	int		y;
 	int		x;
 
+	if (pid <= 10)
+		return ;
 	x = 7;
 	y = 0;
 	bs = "01";
@@ -67,9 +63,8 @@ int	main(int arv, char **arc)
 	a = 0;
 	if (arv >= 3)
 	{
-		signal(SIGUSR1, msg);
 		while (arc[2][a])
-			converter((unsigned char)arc[2][a++], ft_atoi(arc[1]));
+			converter(arc[2][a++], ft_atoi(arc[1]));
 	}
 	return (0);
 }
